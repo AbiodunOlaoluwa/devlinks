@@ -1,14 +1,168 @@
 .loginPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.loginFormLogoContainer {
+    width: 100%;
     display: flex;
+    gap: 0.75rem;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: #FAFAFA;
 }
 
 .loginFormCardContainer {
-    display: flex;
-    flex-direction: column;
-    width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 450px;
+  margin: auto;
+}
+
+.loginTitleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loginTitleHeader {
+  color: #333333;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 150%;
+}
+
+.loginTitleText {
+  font-size: 16px;
+  color: #737373;
+}
+
+.loginFormCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.inputElements {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.labelText {
+  font-size: 12px;
+}
+
+.credentialInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.credentialInputElementContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  gap: 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+}
+
+.credentialInputElementContainer:focus-within {
+  border: 1px solid #633cff;
+  box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+}
+
+.credentialInputElement {
+  width: 100%;
+  height: 24px;
+  outline: none;
+}
+
+.loginButtonContainer {
+  width: 100%;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 11px 27px;
+  outline: none;
+  background-color: #633cff;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+  background: #beadff;
+  box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+}
+
+.loginButton.disabled {
+  background: #beadff;
+  box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.redirectLinkContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.redirectLinkText {
+  font-size: 16px;
+  line-height: 150%;
+  color: #737373;
+}
+
+.purpleText {
+  color: #633cff;
+}
+
+/* For smartphones */
+@media only screen and (max-width: 480px) {
+    .loginPageContainer {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem 3rem;
+    }
+
+    .loginFormLogoContainer {
+        width: 100%;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .loginFormCardContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100dvw;
+        min-width: 100px;
+        margin-top: 2rem;
+    }
+
+    .loginFormCard {
+        padding: 0;
+        margin-top: 5rem;
+    }
+
+    .purpleText {
+        display: block;
+    }
 }

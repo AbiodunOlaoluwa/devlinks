@@ -1,13 +1,20 @@
+import LoginInputForm from "./loginInputForm";
 import Image from "next/image";
 import devlinksTextLogo from "@/public/devlinks.svg";
 import devlinksVectorLogo from "@/public/devlinksLogoImage.svg";
 import "./page.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login - devlinks",
+  description: "devlinks login page"
+}
 
 export default function Home() {
   return (
     <div className="loginPageContainer">
       <div className="loginFormCardContainer">
-        <div className="loginFormLogoContainer flex gap-3 items-center justify-center">
+        <div className="loginFormLogoContainer">
           <Image
             width={40}
             height={40}
@@ -22,7 +29,13 @@ export default function Home() {
             className="loginLogoText"
           />
         </div>
-        <div className="loginFormCard mt-20 bg-white p-8 rounded-xl">login form</div>
+        <div className="loginFormCard mt-20 bg-white p-10 rounded-xl">
+          <div className="loginTitleContainer">
+            <p className="loginTitleHeader">Login</p>
+            <p className="loginTitleText">Add your details below to get back into the app</p>
+          </div>
+          <LoginInputForm />
+        </div>
       </div>
     </div>
   );
