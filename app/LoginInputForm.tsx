@@ -13,10 +13,12 @@ type Credentials = {
 const LoginInputForm = () => {
 
     const [isCredentialValid, setCredentialValid] = useState(false);
+    const [error, setError] = useState(false);
+    const [errorText, setErrorText] = useState("Try Again");
     const [credentials, setCredentials] = useState<Credentials>({
       email: "",
       password: "",
-    })
+    });
   
     useEffect(() => {
       if(credentials.email && credentials.password) {
@@ -30,8 +32,8 @@ const LoginInputForm = () => {
   
   
     const handleCredChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
+      setError(false);
       const {name, value} = e.target;
-  
       setCredentials((prevValues) => ({...prevValues, [name]: value}));
     }
 
@@ -39,28 +41,30 @@ const LoginInputForm = () => {
     <div className="inputElements">
             <div className="credentialsInputContainer">
               <label htmlFor="emailInput" className="credentialInputContainer">
-                <p className="labelText">Email address</p>
-                <div className="credentialInputElementContainer">
+                <p className={`labelText ${error && `error`}`}>Email address</p>
+                <div className={`credentialInputElementContainer ${error && `error`}`}>
                   <Image 
                   width={16}
                   height={16}
                   src={envelope} 
                   alt="envelope" 
                   />
-                  <input onChange={handleCredChange} className="credentialInputElement" id="emailInput" type="email" name="email" placeholder="e.g. alex@email.com" />
+                  <input autoFocus onChange={handleCredChange} className="credentialInputElement" id="emailInput" type="email" name="email" placeholder="e.g. alex@email.com" />
+                  <p className={`${error && `errorText`} ${!error && `hidden`}`}>{errorText}</p>
                 </div>
               </label>
             </div>
             <div className="credentialInputContainer">
               <label htmlFor="passwordInput" className="credentialInputContainer">
-                <p className="labelText">Password</p>
-                <div className="credentialInputElementContainer">
+                <p className={`labelText ${error && `error`}`}>Password</p>
+                <div className={`credentialInputElementContainer ${error && `error`}`}>
                   <Image 
                   width={16}
                   height={16}
                   src={lock} 
                   alt="padlock" />
                   <input onChange={handleCredChange} className="credentialInputElement" id="passwordInput" type="password" name="password" placeholder="Enter your password" />
+                  <p className={`${error && `errorText`} ${!error && `hidden`}`}>{errorText}</p>
                 </div>
               </label>
             </div>

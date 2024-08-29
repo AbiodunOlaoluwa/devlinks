@@ -1,4 +1,4 @@
-import LoginInputForm from "./loginInputForm";
+import LoginInputForm from "./LoginInputForm";
 import Image from "next/image";
 import devlinksTextLogo from "@/public/devlinks.svg";
 import devlinksVectorLogo from "@/public/devlinksLogoImage.svg";
