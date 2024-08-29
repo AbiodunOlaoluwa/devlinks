@@ -1,3 +1,11 @@
+@media (hover: hover) {
+  .loginButton:hover {
+    cursor: pointer;
+    background: #beadff;
+    box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+  }
+}
+
 .loginPageContainer {
   display: flex;
   align-items: center;
@@ -58,7 +66,7 @@
   font-size: 12px;
 }
 
-.labelText.error {
+.error {
   color: #ff3939;
 }
 
@@ -149,6 +157,11 @@
   color: #ff3939;
 }
 
+.passwordValidityText {
+  font-size: 12px;
+  color: #333333;
+}
+
 /* For smartphones */
 @media only screen and (max-width: 480px) {
   .loginPageContainer {
@@ -184,13 +197,5 @@
 
   .purpleText {
     display: block;
-  }
-}
-
-@media (hover: hover) {
-  .loginButton:hover {
-    cursor: pointer;
-    background: #beadff;
-    box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
   }
 }

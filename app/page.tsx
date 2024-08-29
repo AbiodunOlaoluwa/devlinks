@@ -2,7 +2,7 @@ import LoginInputForm from "./LoginInputForm";
 import Image from "next/image";
 import devlinksTextLogo from "@/public/devlinks.svg";
 import devlinksVectorLogo from "@/public/devlinksLogoImage.svg";
-import "./page.css";
+import "./authPages.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function Home() {
             className="loginLogoText"
           />
         </div>
-        <div className="loginFormCard mt-20 bg-white p-10 rounded-xl">
+        <div className="loginFormCard mt-10 bg-white p-10 rounded-xl">
           <div className="loginTitleContainer">
             <p className="loginTitleHeader">Login</p>
             <p className="loginTitleText">Add your details below to get back into the app</p>
