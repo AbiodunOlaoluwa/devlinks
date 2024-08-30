@@ -34,7 +34,8 @@ const LoginInputForm = () => {
     const handleCredChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
       setError(false);
       const {name, value} = e.target;
-      setCredentials((prevValues) => ({...prevValues, [name]: value}));
+      const sanitizedValue = value.replace(/[:;/\,|"'`]/g, "");
+      setCredentials((prevValues) => ({...prevValues, [name]: sanitizedValue}));
     }
 
   return (
@@ -49,7 +50,16 @@ const LoginInputForm = () => {
                   src={envelope} 
                   alt="envelope" 
                   />
-                  <input autoFocus onChange={handleCredChange} className="credentialInputElement" id="emailInput" type="email" name="email" placeholder="e.g. alex@email.com" />
+                  <input 
+                  autoFocus 
+                  onChange={handleCredChange} 
+                  value={credentials.email}
+                  className="credentialInputElement" 
+                  id="emailInput" 
+                  type="email" 
+                  pattern={`[^"'\`]*`}
+                  name="email" 
+                  placeholder="e.g. alex@email.com" />
                   <p className={`${error && `errorText`} ${!error && `hidden`}`}>{errorText}</p>
                 </div>
               </label>
@@ -63,7 +73,15 @@ const LoginInputForm = () => {
                   height={16}
                   src={lock} 
                   alt="padlock" />
-                  <input onChange={handleCredChange} className="credentialInputElement" id="passwordInput" type="password" name="password" placeholder="Enter your password" />
+                  <input 
+                  onChange={handleCredChange} 
+                  value={credentials.password}
+                  className="credentialInputElement" 
+                  id="passwordInput" 
+                  type="password" 
+                  pattern={`[^"'\`]*`}
+                  name="password" 
+                  placeholder="Enter your password" />
                   <p className={`${error && `errorText`} ${!error && `hidden`}`}>{errorText}</p>
                 </div>
               </label>
