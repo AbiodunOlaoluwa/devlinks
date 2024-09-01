@@ -4,6 +4,9 @@ import Image from "next/image";
 import envelope from "@/public/emailEnvelope.svg";
 import lock from "@/public/passwordKeylock.svg";
 import { useEffect, useState } from "react";
+import Spinner from "@/app/components/Spinner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type Credentials = {
     email: string;
@@ -17,11 +20,13 @@ const CreateAccountForm = () => {
     const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState("Try Again");
+    const [loading, setLoading] = useState(false);
     const [credentials, setCredentials] = useState<Credentials>({
         email: "",
         password: "",
         confirmPassword: "",
     });
+    const router = useRouter();
 
     useEffect(() => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
@@ -49,8 +54,33 @@ const CreateAccountForm = () => {
         setCredentials((prevValues) => ({ ...prevValues, [name]: sanitizedValue }));
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        const email = credentials.email;
+        const password = credentials.password;
+
+        try {
+            const res = await axios.post("/api/auth/register", {email, password});
+
+            if (res.status === 200) {
+                router.push("/");
+                setLoading(false);
+            }
+
+            else if (res.status === 400 ) {
+                setError(true);
+                setErrorText("This user already exists");
+                setLoading(false);
+            }
+        } catch (error: any) {
+            setError(true);
+            setLoading(false);
+        }
+    }
+
     return (
-        <div className="inputElements">
+        <form className="inputElements" onSubmit={handleSubmit}>
             <div className="credentialsInputContainer">
                 <label htmlFor="emailInput" className="credentialInputContainer">
                     <p className={`labelText ${error && `error`}`}>Email address</p>
@@ -126,14 +156,20 @@ const CreateAccountForm = () => {
                 <p className={`${isCredentialValid === false ? `error` : ``}`}>Password must contain at least 8 characters, one upper case, one lower case, one number, and one special character.</p>
             </div>
             <div className="loginButtonContainer">
-                <button disabled={!isCredentialValid} className={`loginButton ${!isCredentialValid && 'disabled'}`}>Create Account</button>
+                <button type="submit" disabled={!isCredentialValid} className={`loginButton ${!isCredentialValid && 'disabled'}`}>
+                    {
+                        loading ? 
+                        <Spinner /> :
+              "Create Account"
+                    }
+                </button>
             </div>
             <div className="redirectLinkContainer">
                 <p className="redirectLinkText">
                     Already have an account? <span className="purpleText"><a href="/">Login</a></span>
                 </p>
             </div>
-        </div>
+        </form>
     )
 }
 

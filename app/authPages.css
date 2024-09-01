@@ -111,6 +111,9 @@
 }
 
 .loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 11px 27px;
   outline: none;

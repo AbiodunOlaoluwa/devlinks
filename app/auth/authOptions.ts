@@ -1,12 +1,11 @@
-import NextAuth from "next-auth";
+import { NextAuthOptions } from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/prisma/db";
-import bcrypt from "bcrypt";
-const saltRounds = 10
+import bcrypt from "bcryptjs";
 
-export default NextAuth({
+const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     // OAuth Provider (e.g., Google)
@@ -21,47 +20,39 @@ export default NextAuth({
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // Custom user authentication logic
+      async authorize (credentials, req) {
 
-
+        if(!credentials?.email || !credentials?.password) {
+            console.error("Email and Password are required");
+            return null;
+        }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials?.email },
+          where: { email: credentials.email },
         });
 
-        if (user && user.password && credentials?.password) {
+        if (user && user.password) {
             const isValidPassword = await bcrypt.compare(credentials.password, user.password);
   
             if (isValidPassword) {
               return user;
-            }
+            } else {
+                console.error("Invalid Credentials");
+                return null;
+            };
+          } else {
+            console.error("User not found");
+            return null;
           }
-  
-          throw new Error("Invalid credentials");
         },
     }),
   ],
   session: {
     strategy: "jwt", // Using JWT for sessions
   },
-  callbacks: {
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id as string; // Cast token id to string
-      }
-      return session;
-    },
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-  },
   pages: {
-    signIn: '/', // Custom login page
-    newUser: '/createaccount', // Custom create account page
+    signIn: '/',
   },
-  secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+export default authOptions;

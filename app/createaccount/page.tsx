@@ -1,4 +1,6 @@
 import CreateAccountForm from "./CreateAccountForm";
+import {getServerSession} from "next-auth";
+import {redirect} from "next/navigation";
 import Image from "next/image";
 import devlinksTextLogo from "@/public/devlinks.svg";
 import devlinksVectorLogo from "@/public/devlinksLogoImage.svg";
@@ -10,7 +12,14 @@ export const metadata: Metadata = {
   description: "create a devlinks account"
 }
 
-const createaccount = () => {
+const createaccount = async () => {
+
+  const session = await getServerSession();
+
+  if (session) {
+    redirect("/links");
+  }
+
   return (
     <div className="loginPageContainer">
       <div className="loginFormCardContainer">
