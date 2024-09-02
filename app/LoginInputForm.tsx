@@ -5,7 +5,7 @@ import envelope from "@/public/emailEnvelope.svg";
 import lock from "@/public/passwordKeylock.svg";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import GitHubButton from "./GitHubButton";
 import Spinner from "@/app/components/Spinner";
 import {signIn } from "next-auth/react";
 
@@ -45,6 +45,12 @@ const LoginInputForm = () => {
     const sanitizedValue = value.replace(/[:;/\,|"'`]/g, "");
     setCredentials((prevValues) => ({ ...prevValues, [name]: sanitizedValue }));
   }
+
+  const handleGitHubSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    signIn("github", {callbackUrl: "/links"})
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -127,6 +133,7 @@ const LoginInputForm = () => {
           }
         </button>
       </div>
+      <GitHubButton handleGitHubSignIn={handleGitHubSignIn} />
       <div className="redirectLinkContainer">
         <p className="redirectLinkText">
           Don&apos;t have an account? <span className="purpleText"><a href="/createaccount">Create account</a></span>
