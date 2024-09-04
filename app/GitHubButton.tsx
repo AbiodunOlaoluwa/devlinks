@@ -11,10 +11,13 @@ type Props = {
 
 const GitHubButton = ({handleGitHubSignIn}: Props) => {
 
+  
+
   return (
     <div className="gitHubButtonContainer">
         <button type="button" className="gitHubButton" onClick={handleGitHubSignIn}>
             <Image 
+            className="githubLogo"
             src={github} 
             alt="github" 
             width={26} 

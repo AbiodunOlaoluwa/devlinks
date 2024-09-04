@@ -1,0 +1,87 @@
+.navbarContainer {
+    display: flex;
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+  }
+  
+  .navbar {
+      padding: 1rem 1rem 1rem 1.5rem;
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    background: var(--White, #fff);
+    border-radius: 0.75rem;
+  }
+  
+  .logoBar {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .devlinks {
+    width: 6.75rem;
+    height: 1.3125rem;
+    flex-shrink: 0;
+    fill: var(--Dark-Grey, #333);
+  }
+  
+  .middleLinks {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 1;
+    gap: 0.5rem;
+  }
+  
+  .linksButton {
+    cursor: pointer;
+    display: flex;
+    padding: 0.6875rem 1.6875rem;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--Grey, #737373);
+    /* Heading S */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 1.5rem */
+  }
+  
+  .activeButton {
+    display: flex;
+    padding: 0.6875rem 1.6875rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--Light-Purple, #efebff);
+    color: var(--Purple, #633cff);
+    /* Heading S */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 1.5rem */
+  }
+
+  @media(hover: hover) {
+    .linksButton:hover {
+      color: var(--Purple, #633cff);
+      path {
+        fill: var(--Purple, #633cff);
+      }
+    }
+  }

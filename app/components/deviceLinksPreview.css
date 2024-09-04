@@ -1,0 +1,96 @@
+.previewContainer {
+    display: flex;
+    width: 35rem;
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.75rem;
+    background: var(--White, #fff);
+    max-height: 679px;
+  }
+  
+  .outerOutline {
+    display: flex;
+    width: 19.1875rem;
+    height: 39.4375rem;
+    flex-shrink: 0;
+    stroke-width: 1px;
+    stroke: var(--Grey, #737373);
+    background-image: url("../images/outerOutline.svg");
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .innerOutline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17.8125rem;
+    height: 38.1875rem;
+    flex-shrink: 0;
+    fill: var(--White, #fff);
+    stroke-width: 1px;
+    stroke: var(--Grey, #737373);
+    background-image: url("../images/innerOutline.svg");
+  }
+  
+  .outlineContent {
+    display: flex;
+    width: 14.8125rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.5rem;
+  }
+  
+  .profileContent {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5625rem;
+    align-self: stretch;
+  }
+  
+  .profilePhotoAlternative {
+    width: 6rem;
+    height: 6rem;
+    fill: #eee;
+  }
+  
+  .nameAndDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8125rem;
+  }
+  
+  .nameAlternative {
+    width: 10rem;
+    height: 1rem;
+    border-radius: 6.5rem;
+    background: #eee;
+  }
+  
+  .descriptionAlternative {
+    width: 4.5rem;
+    height: 0.5rem;
+    border-radius: 6.5rem;
+    background: #eee;
+  }
+  
+  .linksListBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    align-self: stretch;
+  }
+  
+  .linkBoxAlternative {
+    height: 2.75rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: #eee;
+  }

@@ -1,0 +1,21 @@
+.logoutButtonContainer {
+    padding: 0.6875rem 1.6875rem;
+    background-color: #ff3939;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    line-height: 150%;
+    color: white;
+}
+
+.logoutButtonContainer:active {
+    background-color: #dd2c2c;
+}
+
+@media (hover: hover) {
+    .logoutButtonContainer:hover {
+        background-color: #e82e2e;
+    }    
+}
+
+

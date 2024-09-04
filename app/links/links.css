@@ -1,0 +1,214 @@
+* {
+  box-sizing: border-box;
+}
+
+.linksContainer {
+    display: flex;
+    padding: 0rem 1.5rem 1.5rem 1.5rem;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+
+  .editPanel {
+    border-radius: 0.75rem 0.75rem 0 0;
+    display: flex;
+    padding: 2.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: var(--White, #fff);
+  }
+  
+  .savePanel {
+    display: flex;
+    /* padding: 1.5rem 2.5rem; */
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    align-self: stretch;
+    background: var(--White, #fff);
+    border-radius: 0 0 0.75rem 0.75rem;
+  }
+  
+  .linkPageHeadingBar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .linkHeading {
+    margin: 0;
+    align-self: stretch;
+    color: var(--Dark-Grey, #333);
+  
+    /* Heading M */
+    font-family: "Instrument Sans";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 3rem */
+  }
+  
+  .headingP {
+    margin: 0;
+    align-self: stretch;
+    color: var(--Grey, #737373);
+  
+    /* Body M */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }
+  
+  .saveButton {
+      color: var(--White, #FFF);
+  
+  /* Heading S */
+  font-family: "Instrument Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.5rem */
+    display: flex;
+    padding: 0.6875rem 1.6875rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--Purple, #633cff);
+  }
+  
+  .saveButton:hover {
+      color: var(--White, #FFF);
+  
+  /* Heading S */
+  font-family: "Instrument Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 1.5rem */
+      border-radius: 0.5rem;
+  background: var(--purple-hover-color, #BEADFF);
+  
+  /* active-selection */
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  }
+  
+  hr {
+    margin: 0;
+    height: 0.0625rem;
+    align-self: stretch;
+    background: var(--Borders, #d9d9d9);
+  }
+  
+  .editPanelBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+  
+  .addLinkButton {
+    display: flex;
+    padding: 0.6875rem 1.6875rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    border: 1px solid var(--Purple, #633cff);
+  }
+  
+  .addLinkButton:hover {
+    display: flex;
+    padding: 0.6875rem 1.6875rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    border: 1px solid var(--Purple, #633cff);
+    background: var(--Light-Purple, #efebff);
+  }
+  
+  .addLinkButtonText {
+    margin: 0;
+    color: var(--Purple, #633cff);
+  
+    /* Heading S */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 1.5rem */
+  }
+  
+  .addLinkBody {
+    display: flex;
+    padding: 1.25rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 0.75rem;
+    background: var(--Light-Grey, #fafafa);
+  }
+  
+  .addLinkBodyContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    align-self: stretch;
+  }
+  
+  .addLinkBodyContentImage {
+    width: 15.59581rem;
+    height: 10rem;
+  }
+  
+  .addLinkBodyContentTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .addLinkBodyContentTextContainerHeader {
+    width: 30.5rem;
+    color: var(--Dark-Grey, #333);
+    text-align: center;
+  
+    /* Heading M */
+    font-family: "Instrument Sans";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 3rem */
+  }
+  
+  .addLinkBodyContentTextContainerP {
+    width: 30.5rem;
+    color: var(--Grey, #737373);
+    text-align: center;
+  
+    /* Body M */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }

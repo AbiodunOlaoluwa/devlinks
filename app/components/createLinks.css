@@ -1,0 +1,131 @@
+.createLinkContainer {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .createLinkHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+  }
+  
+  .createLinkHeader > p {
+    margin: 0;
+    font-family: "Instrument Sans";
+    color: var(--Grey, #737373);
+    font-size: 1rem;
+  }
+  
+  .createLinkHeader span {
+    font-family: "Instrument Sans";
+    font-weight: 700;
+    color: var(--Grey, #737373);
+  }
+  
+  .createLinkRemoveButton:hover {
+    cursor: pointer;
+  }
+  
+  div.platform {
+    margin: 0.8rem 0;
+  }
+  
+  div.link {
+    margin: 0.8rem 0;
+  }
+  
+  label {
+    float: left;
+    font-size: 0.8rem;
+    font-family: "Instrument Sans";
+    color: var(--Dark-Grey, #333);
+    font-weight: 00;
+  }
+  
+  select#platform {
+    appearance: none;
+    width: 100%;
+    height: 2.3rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--Borders, #d9d9d9);
+    background: var(--White, #fff);
+    background-image: url("../images/icon-chevron-down.svg");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 1rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+  
+  option {
+      appearance: none;
+      font-size: 1rem;
+  }
+  
+  option:hover {
+      background: transparent;
+  }
+  
+  .linkInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2.3rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--Borders, #d9d9d9);
+    background: var(--White, #fff);
+  }
+  
+  .link-svg {
+    margin: 0 1rem;
+  }
+  
+  .linkTextInput {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  select#platform:focus-within {
+    border-radius: 0.4rem;
+    border: 1px solid var(--Purple, #633cff);
+    background: var(--White, #fff);
+  
+    /* active-selection */
+    box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+    outline: none;
+  
+    background-image: url("../images/icon-chevron-down.svg");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 1rem;
+  }
+  
+  .linkInputContainer:focus-within {
+    border-radius: 0.4rem;
+    border: 1px solid var(--Purple, #633cff);
+    background: var(--White, #fff);
+  
+    /* active-selection */
+    box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+    outline: none;
+  }
+  
+  .linkTextInput:focus-within {
+    outline: none;
+  }
