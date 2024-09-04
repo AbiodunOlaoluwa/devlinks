@@ -32,11 +32,10 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
                     <div className="linkBoxAlternative"></div>
                   </>
                 ) : (
-                  // Use map to iterate over the array and render elements
                   props.linkArray.map((link, index) => (
                     <div key={index} className="linkBoxAlternative">
-                      <p>{link.linkText}</p>
                       <p>{link.platformOption}</p>
+                      <p>{link.linkText}</p>
                     </div>
                   ))
                 )}

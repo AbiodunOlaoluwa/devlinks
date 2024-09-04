@@ -86,6 +86,7 @@
     align-items: flex-start;
     gap: 1.25rem;
     align-self: stretch;
+    overflow-y: auto;
   }
   
   .linkBoxAlternative {

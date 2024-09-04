@@ -6,6 +6,7 @@
     border-radius: 0.5rem;
     line-height: 150%;
     color: white;
+    min-width: 114.08px;
 }
 
 .logoutButtonContainer:active {

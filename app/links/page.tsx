@@ -18,9 +18,9 @@ export type UserType = {
   id: string;
   name: string | null;
   email: string | null;
-  emailVerified?: Date | null; // Made optional
+  emailVerified?: Date | null; 
   image: string | null;
-  password?: string | null; // Made optional
+  password?: string | null; 
 };
 
 const LinksPage = () => {
@@ -72,8 +72,8 @@ const LinksPage = () => {
           <h1 className="linkHeading">Customize your links</h1>
           <p className="headingP">Add/edit/remove links below and then share all your profiles with the world!</p>
         </div>
-        <div className="editPanelBody">
           <button className="addLinkButton" onClick={createNewLink}><p className="addLinkButtonText">+ Add new link</p></button>
+        <div className="editPanelBody">
           {createLinkObjects.length === 0 ? <div className="addLinkBody">
             <div className="addLinkBodyContent">
               <svg className="addLinkBodyContentImage" xmlns="http://www.w3.org/2000/svg" width="250" height="161" viewBox="0 0 250 161" fill="none">
@@ -125,11 +125,10 @@ const LinksPage = () => {
             return (
               <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} createLinkObjects={createLinkObjects} setCreateLinkObject={setCreateLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
             )
-          })
-           }
+          })}
         </div>
-        <hr />
         <div className="savePanel">
+        <hr />
           <button className="saveButton" onClick={createNewLink}>Save</button>
         </div>
       </div>

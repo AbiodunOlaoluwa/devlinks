@@ -1,10 +1,14 @@
 "use client"
 import "./spinner.css"
 
-const Spinner = () => {
+type Props = {
+  color: string;
+}
+
+const Spinner = ({color}: Props) => {
   return (
     <div className="spinner_bg">
-      <div className="spinner"></div>
+      <div className={`spinner ${color}`}></div>
     </div>
   );
 };

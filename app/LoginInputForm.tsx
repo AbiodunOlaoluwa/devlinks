@@ -21,6 +21,7 @@ const LoginInputForm = () => {
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("Try Again");
   const [loading, setLoading] = useState(false);
+  const [gitHubLoading, setGitHubLoading] = useState(false);
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
     password: "",
@@ -48,7 +49,7 @@ const LoginInputForm = () => {
 
   const handleGitHubSignIn = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setGitHubLoading(true);
     signIn("github", {callbackUrl: "/links"})
   };
 
@@ -128,12 +129,12 @@ const LoginInputForm = () => {
         <button type="submit" disabled={!isCredentialValid} className={`loginButton ${!isCredentialValid && 'disabled'}`}>
           {
             loading ?
-                       <Spinner />  :
+                       <Spinner color={"white"} />  :
               "Login"
           }
         </button>
       </div>
-      <GitHubButton handleGitHubSignIn={handleGitHubSignIn} />
+      <GitHubButton handleGitHubSignIn={handleGitHubSignIn} loading={gitHubLoading} />
       <div className="redirectLinkContainer">
         <p className="redirectLinkText">
           Don&apos;t have an account? <span className="purpleText"><a href="/createaccount">Create account</a></span>

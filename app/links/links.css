@@ -4,15 +4,19 @@
 
 .linksContainer {
     display: flex;
+    justify-content: space-between;
     padding: 0rem 1.5rem 1.5rem 1.5rem;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
     flex: 1 0 0;
     align-self: stretch;
+    max-width: 100dvw;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .editPanel {
-    border-radius: 0.75rem 0.75rem 0 0;
+    border-radius: 0.75rem;
     display: flex;
     padding: 2.5rem;
     flex-direction: column;
@@ -21,6 +25,21 @@
     flex: 1 0 0;
     align-self: stretch;
     background: var(--White, #fff);
+  }
+
+  .editPanelBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    overflow-y: auto;
+  }
+  
+  .addLinkBodyContent {
+    max-width: 100%;
+    overflow-x: hidden; /* Prevents horizontal overflow for the SVG or other large content */
   }
   
   .savePanel {
@@ -106,16 +125,7 @@
     align-self: stretch;
     background: var(--Borders, #d9d9d9);
   }
-  
-  .editPanelBody {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    flex: 1 0 0;
-    align-self: stretch;
-  }
-  
+
   .addLinkButton {
     display: flex;
     padding: 0.6875rem 1.6875rem;

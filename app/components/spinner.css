@@ -6,12 +6,20 @@
   }
 
 .spinner {
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    border-top: 2px solid #ffffff; /* White color for better contrast */
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #ffffff; /* White color for better contrast */
     border-radius: 50%;
     width: 23px;
     height: 23px;
     animation: spin 1s linear infinite;
+  }
+
+  .spinner.black {
+    border-top: 3px solid black;
+  }
+
+  .spinner.white {
+    border-top: 3px solid white;
   }
   
   @keyframes spin {

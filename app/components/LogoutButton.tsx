@@ -16,7 +16,7 @@ const LogoutButton = () => {
 
   return (
     <button className="logoutButtonContainer" onClick={handleLogout}>
-      {loading ? <Spinner /> : "Log Out"}
+      {loading ? <Spinner color={"white"} /> : "Log Out"}
     </button>
   )
 }
