@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import "./links.css";
 import DeviceLinksPreview from "@/app/components/DeviceLinksPreview";
 import CreateLink from "@/app/components/CreateLink";
+import { useLinkContext } from "./LinkContext";
 
 
 
@@ -24,10 +25,9 @@ export type UserType = {
 };
 
 const LinksPage = () => {
-  const [createLinkObjects, setCreateLinkObjects] = useState<LinkObject[]>([]);
-  const [platform, setPlatform] = useState("GitHub");
+  const {createLinkObjects, addLink, removeLink} = useLinkContext();
+  const [platform, setPlatform] = useState("");
   const [link, setLink] = useState("");
-  const [linkObjects, setLinkObjects] = useState<LinkObject[]>([]);
   const {status, data: session } = useSession();
   const [user, setUser] =useState<UserType | null>(null);
   const router = useRouter();
@@ -43,25 +43,18 @@ const LinksPage = () => {
     }
   }, [status, session, router]);
 
-  console.log(user);
 
 
-
-  function createNewLink() {
-
-    setCreateLinkObjects([...createLinkObjects, {platformOption: platform, linkText: link}])
-
-    setLinkObjects([...linkObjects]);
+  function createNewLink(): void {
+    addLink(platform, link);
+    setPlatform("");
+    setLink("");
   }
 
-  function removeCreatelinkObject(id: number) {
-    setCreateLinkObjects(
-      (prevValue) => {
-        return prevValue.filter((item, index) => {
-          return index !== id;
-        });
-      }
-    )
+  function removeCreatelinkObject(id: number): void {
+    removeLink(id);
+    setPlatform("");
+    setLink("");
   }
 
   return (
@@ -123,13 +116,13 @@ const LinksPage = () => {
           </div> : 
           createLinkObjects.map((content, index) => {
             return (
-              <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} createLinkObjects={createLinkObjects} setCreateLinkObject={setCreateLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
+              <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} platformOption={content.platformOption} linkText={content.linkText} createLinkObjects={createLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
             )
           })}
         </div>
         <div className="savePanel">
         <hr />
-          <button className="saveButton" onClick={createNewLink}>Save</button>
+          <button className="saveButton">Save</button>
         </div>
       </div>
     </div>
