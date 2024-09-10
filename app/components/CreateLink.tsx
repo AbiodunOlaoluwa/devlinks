@@ -92,6 +92,8 @@ type CreateLinkProps = {
                                 <option value="Hashnode">Hashnode</option>
                                 <hr />
                                 <option value="Stack Overflow">Stack Overflow</option>
+                                <hr />
+                                <option value="Personal Site">Personal Site</option>
 
                             </select>
                         </div>

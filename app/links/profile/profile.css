@@ -1,0 +1,95 @@
+.linksContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1.5rem 1.5rem 1.5rem;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    max-width: 100dvw;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .editPanel {
+    border-radius: 0.75rem;
+    display: flex;
+    padding: 2.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: var(--White, #fff);
+  }
+
+  .editPanelBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    overflow-y: auto;
+  }
+
+  .linkPageHeadingBar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .linkHeading {
+    margin: 0;
+    align-self: stretch;
+    color: var(--Dark-Grey, #333);
+  
+    /* Heading M */
+    font-family: "Instrument Sans";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 3rem */
+  }
+  
+  .headingP {
+    margin: 0;
+    align-self: stretch;
+    color: var(--Grey, #737373);
+  
+    /* Body M */
+    font-family: "Instrument Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }
+
+.profileSavePanel {
+    display: flex;
+    /* padding: 1.5rem 2.5rem; */
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    align-self: stretch;
+    background: var(--White, #fff);
+    border-radius: 0 0 0.75rem 0.75rem;
+  }
+
+.profileSaveButton {
+    color: var(--White, #FFF);
+
+/* Heading S */
+font-family: "Instrument Sans";
+font-size: 1rem;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 1.5rem */
+  display: flex;
+  padding: 0.6875rem 1.6875rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--Purple, #633cff);
+}

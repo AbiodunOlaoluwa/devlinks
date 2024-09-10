@@ -19,17 +19,17 @@ export type UserType = {
   id: string;
   name: string | null;
   email: string | null;
-  emailVerified?: Date | null; 
+  emailVerified?: Date | null;
   image: string | null;
-  password?: string | null; 
+  password?: string | null;
 };
 
 const LinksPage = () => {
-  const {createLinkObjects, addLink, removeLink} = useLinkContext();
+  const { createLinkObjects, addLink, removeLink } = useLinkContext();
   const [platform, setPlatform] = useState("");
   const [link, setLink] = useState("");
-  const {status, data: session } = useSession();
-  const [user, setUser] =useState<UserType | null>(null);
+  const { status, data: session } = useSession();
+  const [user, setUser] = useState<UserType | null>(null);
   const router = useRouter();
 
 
@@ -58,14 +58,14 @@ const LinksPage = () => {
   }
 
   return (
-<div className="linksContainer">
+    <div className="linksContainer">
       <DeviceLinksPreview linkArray={createLinkObjects} />
       <div className="editPanel">
         <div className="linkPageHeadingBar">
           <h1 className="linkHeading">Customize your links</h1>
           <p className="headingP">Add/edit/remove links below and then share all your profiles with the world!</p>
         </div>
-          <button className="addLinkButton" onClick={createNewLink}><p className="addLinkButtonText">+ Add new link</p></button>
+        <button className="addLinkButton" onClick={createNewLink}><p className="addLinkButtonText">+ Add new link</p></button>
         <div className="editPanelBody">
           {createLinkObjects.length === 0 ? <div className="addLinkBody">
             <div className="addLinkBodyContent">
@@ -113,15 +113,15 @@ const LinksPage = () => {
                 <p className="addLinkBodyContentTextContainerP">Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
               </div>
             </div>
-          </div> : 
-          createLinkObjects.map((content, index) => {
-            return (
-              <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} platformOption={content.platformOption} linkText={content.linkText} createLinkObjects={createLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
-            )
-          })}
+          </div> :
+            createLinkObjects.map((content, index) => {
+              return (
+                <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} platformOption={content.platformOption} linkText={content.linkText} createLinkObjects={createLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
+              )
+            })}
         </div>
         <div className="savePanel">
-        <hr />
+          <hr />
           <button className="saveButton">Save</button>
         </div>
       </div>

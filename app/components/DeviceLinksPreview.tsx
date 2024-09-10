@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import "./deviceLinksPreview.css";
 import { LinkObject } from "../links/page";
 import rightArrow from "@/app/images/icon-arrow-right.svg";
@@ -16,7 +16,7 @@ import freeCodeCamp from "@/app/images/icon-freecodecamp.svg";
 import gitLab from "@/app/images/icon-gitlab.svg";
 import hashNode from "@/app/images/icon-hashnode.svg";
 import stackOverFlow from "@/app/images/icon-stack-overflow.svg";
-import { useState } from "react";
+import personalSite from "@/app/images/icon-link copy.svg";
 import Image from "next/image";
 
 type DevicePreviewProps = {
@@ -55,6 +55,8 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
         return hashNode;
       case "Stack Overflow":
         return stackOverFlow;
+      case "Personal Site":
+        return personalSite;
       default:
         return ""; // Return an empty string or a default icon if needed
     }
@@ -90,6 +92,8 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
         return "hashNode";
       case "Stack Overflow":
         return "stackOverFlow";
+      case "Personal Site":
+        return "personalSite";
       default:
         return ""; // Return a default class if needed
     }
