@@ -11,6 +11,7 @@ interface LinkContextType {
   createLinkObjects: LinkObject[];
   addLink: (platform: string, link: string) => void;
   removeLink: (id: number) => void;
+  editLink: (id: number, platform: string, link: string) => void;
 }
 
 const LinkContext = createContext<LinkContextType | undefined>(undefined);
@@ -29,8 +30,16 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
     setCreateLinkObjects((prevLinks) => prevLinks.filter((_, index) => index !== id));
   };
 
+  const editLink = (id: number, platform: string, link: string) => {
+    setCreateLinkObjects((prevLinks) =>
+      prevLinks.map((linkObj, index) =>
+        index === id ? { platformOption: platform, linkText: link } : linkObj
+      )
+    );
+  };
+
   return (
-    <LinkContext.Provider value={{ createLinkObjects, addLink, removeLink }}>
+    <LinkContext.Provider value={{ createLinkObjects, addLink, removeLink, editLink }}>
       {children}
     </LinkContext.Provider>
   );

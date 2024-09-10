@@ -1,7 +1,7 @@
 "use client";
 import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import "./createLinks.css";
-import { LinkObject } from '../links/page';
+import { LinkObject, useLinkContext } from "@/app/links/LinkContext";
 
 type CreateLinkProps = {
     key: number;
@@ -13,9 +13,9 @@ type CreateLinkProps = {
     createLinkObjects: LinkObject[];
     setAppPlatform: Dispatch<SetStateAction<string>>;
     setAppLink: Dispatch<SetStateAction<string>>;
-  };
+};
 
-  const CreateLink: React.FC<CreateLinkProps> = ({
+const CreateLink: React.FC<CreateLinkProps> = ({
     id,
     index,
     deleteLink: deleteLink,
@@ -24,13 +24,14 @@ type CreateLinkProps = {
     createLinkObjects,
     setAppPlatform,
     setAppLink,
-  }) => {
+}) => {
 
-    const[platform, setPlatform] = useState(platformOption || "")
-    const[link, setLink] = useState(linkText || "");
+    const [platform, setPlatform] = useState(platformOption || "")
+    const [link, setLink] = useState(linkText || "");
+    const { editLink } = useLinkContext();
 
     useEffect(() => {
-        if(platformOption && linkText) {
+        if (platformOption && linkText) {
             setPlatform(platformOption);
             setLink(linkText);
         }
@@ -39,11 +40,13 @@ type CreateLinkProps = {
     function handlePlatformChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         setAppPlatform(event.target.value);
         setPlatform(event.target.value);
+        editLink(index, event.target.value, link);
     }
 
     function handleLinkChange(event: React.ChangeEvent<HTMLInputElement>): void {
         setAppLink(event.target.value);
         setLink(event.target.value);
+        editLink(index, platform, event.target.value);
     }
 
     return (
@@ -52,7 +55,7 @@ type CreateLinkProps = {
                 <div className="createLinkHeader">
                     <p>= <span>Link #
                         {index + 1}
-                        </span></p>
+                    </span></p>
                     <p onClick={() => {
                         deleteLink(id)
                     }} className="createLinkRemoveButton">Remove</p>
