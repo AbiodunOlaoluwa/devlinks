@@ -46,7 +46,7 @@ const LinksPage = () => {
 
 
   function createNewLink(): void {
-    addLink(platform, link);
+    addLink("", "");
     setPlatform("");
     setLink("");
   }
