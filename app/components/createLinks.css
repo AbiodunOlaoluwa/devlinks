@@ -22,6 +22,11 @@
     /* align-items: flex-start; */
   }
   
+  .createLinkDnDSN{
+    display: flex;
+    gap: 1rem;
+  }
+  
   .createLinkHeader > p {
     margin: 0;
     font-family: "Instrument Sans";
@@ -132,4 +137,8 @@
   
   .linkTextInput:focus-within {
     outline: none;
+  }
+
+  .createLinkContainer.dragging {
+    opacity: 0.5;
   }

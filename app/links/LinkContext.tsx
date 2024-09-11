@@ -12,6 +12,7 @@ interface LinkContextType {
   addLink: (platform: string, link: string) => void;
   removeLink: (id: number) => void;
   editLink: (id: number, platform: string, link: string) => void;
+  moveLink: (fromIndex: number, toIndex: number) => void;
 }
 
 const LinkContext = createContext<LinkContextType | undefined>(undefined);
@@ -38,8 +39,17 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const moveLink = (fromIndex: number, toIndex: number) => {
+    setCreateLinkObjects((prevLinks) => {
+      const updatedLinks = [...prevLinks];
+      const [movedLink] = updatedLinks.splice(fromIndex, 1); // Remove the dragged item
+      updatedLinks.splice(toIndex, 0, movedLink); // Insert it at the new position
+      return updatedLinks;
+    });
+  };
+
   return (
-    <LinkContext.Provider value={{ createLinkObjects, addLink, removeLink, editLink }}>
+    <LinkContext.Provider value={{ createLinkObjects, addLink, removeLink, editLink, moveLink }}>
       {children}
     </LinkContext.Provider>
   );

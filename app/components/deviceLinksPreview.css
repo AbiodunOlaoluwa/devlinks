@@ -178,3 +178,21 @@
     color: #FFFFFF;
     fill: white;
   }
+
+  @media only screen and (max-width: 320px) {
+    .previewContainer {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .previewContainer {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .previewContainer {
+      display: none;
+    }
+  }

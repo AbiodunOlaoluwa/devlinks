@@ -1,6 +1,9 @@
 "use client";
-import { Dispatch, SetStateAction, useState, useEffect } from 'react';
+import { Dispatch, SetStateAction, useState, useEffect, useRef } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 import "./createLinks.css";
+import Image from 'next/image';
+import draganddropIcon from "@/app/images/icon-drag-and-drop.svg";
 import { LinkObject, useLinkContext } from "@/app/links/LinkContext";
 
 type CreateLinkProps = {
@@ -15,6 +18,8 @@ type CreateLinkProps = {
     setAppLink: Dispatch<SetStateAction<string>>;
 };
 
+const ITEM_TYPE = "LINK";
+
 const CreateLink: React.FC<CreateLinkProps> = ({
     id,
     index,
@@ -26,9 +31,11 @@ const CreateLink: React.FC<CreateLinkProps> = ({
     setAppLink,
 }) => {
 
+    const { moveLink } = useLinkContext();
     const [platform, setPlatform] = useState(platformOption || "")
     const [link, setLink] = useState(linkText || "");
     const { editLink } = useLinkContext();
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         if (platformOption && linkText) {
@@ -36,6 +43,71 @@ const CreateLink: React.FC<CreateLinkProps> = ({
             setLink(linkText);
         }
     }, [platformOption, linkText])
+
+    const [{ isDragging }, drag] = useDrag({
+        type: ITEM_TYPE,
+        item: { index },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    const [, drop] = useDrop({
+        accept: ITEM_TYPE,
+        hover: (item: { index: number }, monitor) => {
+            if (item.index !== index) {
+                moveLink(item.index, index); // Call moveLink when the item is hovered
+                item.index = index; // Update the dragged item's index
+            }
+
+            const container = containerRef.current;
+            if (!container) return;
+
+            const { x, y } = monitor.getClientOffset() || { x: 0, y: 0 };
+            const rect = container.getBoundingClientRect();
+
+            const edgeThreshold = 35; // Distance from the edge to trigger scrolling
+            const scrollSpeed = 10; // Pixels to scroll per interval
+
+            if (y - rect.top < edgeThreshold) {
+                container.scrollTop -= scrollSpeed; // Scroll up
+            } else if (rect.bottom - y < edgeThreshold) {
+                container.scrollTop += scrollSpeed; // Scroll down
+            }
+        },
+    });
+
+    // Function to handle touch move and autoscroll for touch devices
+    const handleTouchMove = (e: TouchEvent) => {
+        const touch = e.touches[0];
+        const container = containerRef.current;
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
+        const y = touch.clientY;
+
+        const edgeThreshold = 35; // Distance from the edge to trigger scrolling
+        const scrollSpeed = 10; // Pixels to scroll per interval
+
+        if (y - rect.top < edgeThreshold) {
+            container.scrollTop -= scrollSpeed; // Scroll up
+        } else if (rect.bottom - y < edgeThreshold) {
+            container.scrollTop += scrollSpeed; // Scroll down
+        }
+    };
+
+    // Attach touch event listeners
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        container.addEventListener("touchmove", handleTouchMove);
+
+        // Cleanup function to remove event listeners
+        return () => {
+            container.removeEventListener("touchmove", handleTouchMove);
+        };
+    }, []);
 
     function handlePlatformChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         setAppPlatform(event.target.value);
@@ -49,13 +121,21 @@ const CreateLink: React.FC<CreateLinkProps> = ({
         editLink(index, platform, event.target.value);
     }
 
+    const combinedRef = (node: HTMLDivElement | null) => {
+        drag(node); // Attach drag behavior
+        drop(node); // Attach drop behavior
+    };
+
     return (
-        <div className="createLinkContainer">
+        <div ref={combinedRef} className={`createLinkContainer ${isDragging ? "dragging" : ""}`}>
             <div className="container">
                 <div className="createLinkHeader">
-                    <p>= <span>Link #
-                        {index + 1}
-                    </span></p>
+                    <div className="createLinkDnDSN">
+                        <Image src={draganddropIcon} alt='draganddrop' />
+                        <p><span>Link #
+                            {index + 1}
+                        </span></p>
+                    </div>
                     <p onClick={() => {
                         deleteLink(id)
                     }} className="createLinkRemoveButton">Remove</p>

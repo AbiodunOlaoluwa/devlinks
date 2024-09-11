@@ -222,3 +222,22 @@
     font-weight: 400;
     line-height: 150%; /* 1.5rem */
   }
+
+
+  @media only screen and (max-width: 320px) {
+    .editPanel {
+      min-height: 100dvh;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .editPanel {
+      min-height: 100dvh;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .editPanel {
+      min-height: 100dvh;
+    }
+  }
