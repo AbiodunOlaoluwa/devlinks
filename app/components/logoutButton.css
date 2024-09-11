@@ -13,10 +13,28 @@
     background-color: #dd2c2c;
 }
 
+.logOutIcon {
+    display: none;
+}
+
 @media (hover: hover) {
     .logoutButtonContainer:hover {
         background-color: #e82e2e;
     }    
+}
+
+@media only screen and (max-width: 480px) {
+    .logoutButtonContainer {
+        min-width: none;
+        display: none;
+    }
+
+    .logOutIcon {
+        display: flex;
+    }
+    .logOutText {
+        display: none;
+    }
 }
 
 

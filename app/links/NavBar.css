@@ -77,6 +77,10 @@
     line-height: 150%; /* 1.5rem */
   }
 
+  .previewEye {
+    display: none;
+  }
+
   @media(hover: hover) {
     .linksButton:hover {
       color: var(--Purple, #633cff);
@@ -85,3 +89,21 @@
       }
     }
   }
+
+  @media only screen and (max-width: 320px) {}
+
+  @media only screen and (max-width: 480px) {
+    .devlinks {
+      display: none;
+    }
+
+    .navBarText {
+      display: none;
+    }
+
+    .previewEye {
+      display: flex;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {}

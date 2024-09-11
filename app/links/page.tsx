@@ -110,7 +110,7 @@ const LinksPage = () => {
               </svg>
               <div className="addLinkBodyContentTextContainer">
                 <h1 className="addLinkBodyContentTextContainerHeader">Let&apos;s get you started</h1>
-                <p className="addLinkBodyContentTextContainerP">Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
+                <p className="addLinkBodyContentTextContainerP">Use the “Add new link” button to <br className="lineBreak" />get started. Once you have more <br className="lineBreak" />than one link, you can reorder and <br className="lineBreak" />edit them. We’re here to help you <br className="lineBreak" />share your profiles with everyone!</p>
               </div>
             </div>
           </div> :
@@ -122,7 +122,8 @@ const LinksPage = () => {
         </div>
         <div className="savePanel">
           <hr />
-          <button className="saveButton">Save</button>
+          {/* if disabled, remember to return immediately in the handle save function */}
+          <button disabled={createLinkObjects.length === 0} className={`saveButton ${createLinkObjects.length === 0 ? 'disabled' : ""}`}>Save</button>
         </div>
       </div>
     </div>

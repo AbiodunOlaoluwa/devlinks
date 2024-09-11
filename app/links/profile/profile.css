@@ -93,3 +93,42 @@ line-height: 150%; /* 1.5rem */
   border-radius: 0.5rem;
   background: var(--Purple, #633cff);
 }
+
+@media only screen and (max-width: 320px) {
+  .editPanel {
+    height: 100dvh;
+  }
+
+  .addLinkBodyContentTextContainerP {
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .editPanel {
+    height: 100dvh;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .linkHeading {
+    font-size: 24px;
+  }
+
+  .headingP {
+    font-size: 16px;
+  }
+
+  .profileSaveButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .editPanel {
+    min-height: 100dvh;
+  }
+}
