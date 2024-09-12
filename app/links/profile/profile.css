@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 1.5rem;
     flex: 1 0 0;
     align-self: stretch;
@@ -63,6 +64,101 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 1.5rem */
+  }
+
+  .profileSubArea {
+    padding: 1.2rem;
+    background-color: #fafafa;
+    border-radius: 12px;
+    width: 100%;
+    min-height: 233px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .profilePhotoText {
+    color: #737373;
+    font-size: 16px;
+    line-height: 150%;
+    width: 29%;
+  }
+
+  .uploadImageBoxContainer {
+    width: 60%;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .imageUploadBox:hover {
+    cursor: pointer;
+  }
+
+  .uploadImageBoxText {
+    color: #737373;
+    font-size: 12px;
+    line-height: 150%;
+  }
+
+  .profileTextSubArea {
+    padding: 1.2rem;
+    background-color: #fafafa;
+    border-radius: 12px;
+    width: 100%;
+    min-height: 233px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .profileTextContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .profileText {
+    color: #737373;
+  }
+
+  .textInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 3rem;
+    padding: 0 16px;
+    border-radius: 0.4rem;
+    border: 1px solid var(--Borders, #d9d9d9);
+    background: var(--White, #fff);
+  }
+
+  .textInputContainer:focus-within {
+    border: 1px solid #633cff;
+    box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+  }
+
+  .textInput {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-radius: inherit;
+    color: #333;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .textInput::placeholder {
+    /* color: #d9d9d9; */
+    font-size: 16px;
+    line-height: 150%;
   }
 
 .profileSavePanel {
