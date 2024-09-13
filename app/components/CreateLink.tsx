@@ -48,7 +48,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
           case "GitHub":
             return "https://github.com/";
           case "Frontend Mentor":
-            return "https://frontendmentor.io/";
+            return "https://frontendmentor.io/profile/";
           case "Twitter":
             return "https://x.com/";
           case "LinkedIn":
