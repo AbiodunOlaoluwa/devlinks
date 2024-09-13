@@ -7,11 +7,19 @@ import imageUploadBox from "@/app/images/uploadImageBox.svg";
 
 const Profile = () => {
 
-  const { createLinkObjects } = useLinkContext();
+  const { createLinkObjects, name, email, image, editName, editEmail, editImage } = useLinkContext();
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    editName(event.target.value);
+  }
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    editEmail(event.target.value);
+  }
 
   return (
     <div className="linksContainer">
-      <DeviceLinksPreview linkArray={createLinkObjects} />
+      <DeviceLinksPreview linkArray={createLinkObjects} name={name} email={email} image={image} />
       <div className="editPanel">
         <div className="linkPageHeadingBar">
           <h1 className="linkHeading">Profile Details</h1>
@@ -35,19 +43,13 @@ const Profile = () => {
             <div className="profileTextContainer">
               <p className="profileText">First Name*</p>
               <div className="textInputContainer">
-                <input required type="text" className="textInput" name="firstName" placeholder="e.g. John" />
-              </div>
-            </div>
-            <div className="profileTextContainer">
-              <p className="profileText">Last Name*</p>
-              <div className="textInputContainer">
-                <input required type="text" className="textInput" name="lastName" placeholder="e.g. Appleseed" />
+                <input required type="text" className="textInput" name="name" placeholder="e.g. John Appleseed" value={name} onChange={handleNameChange} />
               </div>
             </div>
             <div className="profileTextContainer">
               <p className="profileText">Email</p>
               <div className="textInputContainer">
-                <input type="email" className="textInput" name="email" placeholder="e.g. email@example.com" />
+                <input type="email" className="textInput" name="email" placeholder="e.g. email@example.com" value={email} onChange={handleEmailChange} />
               </div>
             </div>
           </div>

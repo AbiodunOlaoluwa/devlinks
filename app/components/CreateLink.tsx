@@ -31,10 +31,9 @@ const CreateLink: React.FC<CreateLinkProps> = ({
     setAppLink,
 }) => {
 
-    const { moveLink } = useLinkContext();
+    const { editLink, moveLink } = useLinkContext();
     const [platform, setPlatform] = useState(platformOption || "")
     const [link, setLink] = useState(linkText || "");
-    const { editLink } = useLinkContext();
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -43,6 +42,43 @@ const CreateLink: React.FC<CreateLinkProps> = ({
             setLink(linkText);
         }
     }, [platformOption, linkText])
+
+    const getLinkPrefix = (platformOption: string) => {
+        switch (platformOption) {
+          case "GitHub":
+            return "https://github.com/";
+          case "Frontend Mentor":
+            return "https://frontendmentor.io/";
+          case "Twitter":
+            return "https://x.com/";
+          case "LinkedIn":
+            return "https://linkedin.com/in/";
+          case "YouTube":
+            return "https://youtube.com/";
+          case "Facebook":
+            return "https://facebook.com/";
+          case "Twitch":
+            return "https://twitch.com/";
+          case "Dev.to":
+            return "https://dev.to/";
+          case "Codewars":
+            return "https://codewars.com/users/";
+          case "Codepen": 
+            return "https://codepen.io/"
+          case "freeCodeCamp":
+            return "https://freecodecamp.org/";
+          case "GitLab":
+            return "https://gitlab.com/";
+          case "Hashnode":
+            return "https://hashnode.com/@";
+          case "Stack Overflow":
+            return "https://stackoverflow.com/users/";
+          case "Personal Site":
+            return "https://";
+          default:
+            return ""; // Return a default class if needed
+        }
+      };
 
     const [{ isDragging }, drag] = useDrag({
         type: ITEM_TYPE,
@@ -112,7 +148,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
     function handlePlatformChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         setAppPlatform(event.target.value);
         setPlatform(event.target.value);
-        editLink(index, event.target.value, link);
+        editLink(index, event.target.value, getLinkPrefix(event.target.value));
     }
 
     function handleLinkChange(event: React.ChangeEvent<HTMLInputElement>): void {

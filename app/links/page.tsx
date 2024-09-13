@@ -25,7 +25,7 @@ export type UserType = {
 };
 
 const LinksPage = () => {
-  const { createLinkObjects, addLink, removeLink } = useLinkContext();
+  const { createLinkObjects, name, email, image, addLink, removeLink } = useLinkContext();
   const [platform, setPlatform] = useState("");
   const [link, setLink] = useState("");
   const { status, data: session } = useSession();
@@ -46,7 +46,7 @@ const LinksPage = () => {
 
 
   function createNewLink(): void {
-    addLink("", "");
+    addLink("", "https://");
     setPlatform("");
     setLink("");
   }
@@ -59,7 +59,7 @@ const LinksPage = () => {
 
   return (
     <div className="linksContainer">
-      <DeviceLinksPreview linkArray={createLinkObjects} />
+      <DeviceLinksPreview linkArray={createLinkObjects} name={name} email={email} image={image} />
       <div className="editPanel">
         <div className="linkPageHeadingBar">
           <h1 className="linkHeading">Customize your links</h1>

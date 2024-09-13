@@ -21,9 +21,13 @@ import Image from "next/image";
 
 type DevicePreviewProps = {
   linkArray: LinkObject[];
+  name: string;
+  email: string;
+  image: string;
 }
 
 const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) => {
+  const {linkArray, name, email, image} = props;
 
   const getImageSource = (platformOption: string) => {
     switch (platformOption) {
@@ -110,8 +114,18 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
                   <circle cx="48.5" cy="48" r="48" fill="#EEEEEE" />
                 </svg>
                 <div className="nameAndDescription">
+                  {name === "" ? 
                   <div className="nameAlternative"></div>
-                  <div className="descriptionAlternative"></div>
+                  :
+                  <div className="nameContainer">{name}</div>
+                }
+                  {email === "" ? 
+                  <div className="descriptionAlternative"></div> 
+                  :
+                  <a href={`mailto:${email}`}>
+                  <div className="emailContainer">{email}</div>
+                  </a>
+                }
                 </div>
               </div>
               <div className="linksListBox">

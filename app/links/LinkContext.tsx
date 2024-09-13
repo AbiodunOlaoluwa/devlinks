@@ -9,6 +9,12 @@ export type LinkObject = {
 
 interface LinkContextType {
   createLinkObjects: LinkObject[];
+  name: string;
+  email: string;
+  image: string;
+  editName: (name: string) => void;
+  editEmail: (email: string) => void;
+  editImage: (image: string) => void;
   addLink: (platform: string, link: string) => void;
   removeLink: (id: number) => void;
   editLink: (id: number, platform: string, link: string) => void;
@@ -19,6 +25,9 @@ const LinkContext = createContext<LinkContextType | undefined>(undefined);
 
 export const LinkProvider = ({ children }: { children: ReactNode }) => {
   const [createLinkObjects, setCreateLinkObjects] = useState<LinkObject[]>([]);
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [image, setImage] = useState<string>("");
 
   //on mount, we're going to use effect hook to pull the user links data and be updating it when they click "save" with a 
   //function to patch the links data of the user in the database...
@@ -48,8 +57,20 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const editName = (name: string) => {
+    setName(name);
+  }
+
+  const editEmail = (email: string) => {
+    setEmail(email);
+  }
+
+  const editImage = (image: string) => {
+    setImage(image);
+  }
+
   return (
-    <LinkContext.Provider value={{ createLinkObjects, addLink, removeLink, editLink, moveLink }}>
+    <LinkContext.Provider value={{ createLinkObjects, name, email, image, addLink, removeLink, editLink, moveLink, editName, editEmail, editImage }}>
       {children}
     </LinkContext.Provider>
   );
