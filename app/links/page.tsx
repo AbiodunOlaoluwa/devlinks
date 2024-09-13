@@ -25,12 +25,13 @@ export type UserType = {
 };
 
 const LinksPage = () => {
-  const { createLinkObjects, name, email, image, addLink, removeLink } = useLinkContext();
+  const { createLinkObjects, name, email, image, setUserData, addLink, removeLink, saveLinks } = useLinkContext();
   const [platform, setPlatform] = useState("");
   const [link, setLink] = useState("");
   const { status, data: session } = useSession();
   const [user, setUser] = useState<UserType | null>(null);
   const router = useRouter();
+  const [saving, setSaving] = useState(false);
 
 
 
@@ -40,8 +41,9 @@ const LinksPage = () => {
       router.push("/");
     } else if (status === "authenticated") {
       setUser(session.user as UserType);
+      setUserData(session.user as UserType);
     }
-  }, [status, session, router]);
+  }, [status, session, setUserData, router]);
 
 
 
@@ -57,6 +59,29 @@ const LinksPage = () => {
     setLink("");
   }
 
+
+  const handleSave = async () => {
+    setSaving(true); // Start the saving state
+    // setError(null); // Clear any previous errors
+
+    try {
+      const response = await saveLinks(); // Await the saveLinks function to finish
+
+      if (response.success) {
+        // Handle success (if saveLinks returns a success property)
+        setSaving(false); // Stop the saving state
+        // You can provide additional feedback here, e.g., show a success message
+      } else {
+        // Handle the error case if there is an error in response
+        setSaving(false);
+        // setError("Failed to save links. Please try again.");
+      }
+    } catch (error) {
+      setSaving(false);
+      // setError("An unexpected error occurred. Please try again.");
+    }
+  };
+
   return (
     <div className="linksContainer">
       <DeviceLinksPreview linkArray={createLinkObjects} name={name} email={email} image={image} />
@@ -67,7 +92,7 @@ const LinksPage = () => {
         </div>
         <button className="addLinkButton" onClick={createNewLink}><p className="addLinkButtonText">+ Add new link</p></button>
         <div className="editPanelBody">
-          {createLinkObjects.length === 0 ? <div className="addLinkBody">
+          {createLinkObjects?.length === 0 ? <div className="addLinkBody">
             <div className="addLinkBodyContent">
               <svg className="addLinkBodyContentImage" xmlns="http://www.w3.org/2000/svg" width="250" height="161" viewBox="0 0 250 161" fill="none">
                 <path opacity="0.3" d="M48.6936 15.4213C23.3786 25.2238 4.59362 50.0679 0.857884 80.1285C-2.26282 105.459 5.19347 133.446 49.0884 141.419C134.494 156.939 222.534 158.754 242.952 116.894C263.369 75.0336 235.427 8.00293 192.079 3.36363C157.683 -0.326546 98.1465 -3.7206 48.6936 15.4213Z" fill="white" />
@@ -114,7 +139,7 @@ const LinksPage = () => {
               </div>
             </div>
           </div> :
-            createLinkObjects.map((content, index) => {
+            createLinkObjects?.map((content, index) => {
               return (
                 <CreateLink key={index} id={index} index={index} deleteLink={removeCreatelinkObject} platformOption={content.platformOption} linkText={content.linkText} createLinkObjects={createLinkObjects} setAppPlatform={setPlatform} setAppLink={setLink} />
               )
@@ -123,7 +148,7 @@ const LinksPage = () => {
         <div className="savePanel">
           <hr />
           {/* if disabled, remember to return immediately in the handle save function */}
-          <button disabled={createLinkObjects.length === 0} className={`saveButton ${createLinkObjects.length === 0 ? 'disabled' : ""}`}>Save</button>
+          <button onClick={handleSave} disabled={createLinkObjects?.length === 0} className={`saveButton ${createLinkObjects?.length === 0 ? 'disabled' : ""} ${saving ? 'disabled' : ''}`}>{saving ? "Saving" : "Save"}</button>
         </div>
       </div>
     </div>

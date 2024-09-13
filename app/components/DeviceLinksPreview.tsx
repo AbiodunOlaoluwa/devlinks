@@ -129,7 +129,7 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
                 </div>
               </div>
               <div className="linksListBox">
-                {props.linkArray.length === 0 ? (
+                {props.linkArray?.length === 0 ? (
                   <>
                     <div className="linkBoxAlternative"></div>
                     <div className="linkBoxAlternative"></div>
@@ -138,7 +138,7 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
                     <div className="linkBoxAlternative"></div>
                   </>
                 ) : (
-                  props.linkArray.map((link, index) => (
+                  props.linkArray?.map((link, index) => (
                     (link.platformOption && link.linkText) ? 
                     <a key={index} href={link.linkText} target="_blank" className={`linkBox`}>
                     <div className={`linkBoxAlternative ${getBgColorClass(link.platformOption)} whiteText`}>

@@ -14,18 +14,19 @@ datasource db {
 }
 
 model User {
-  id             String      @id @default(uuid())
-  name           String? 
-  email          String?  @unique
-  emailVerified  DateTime?
-  image          String?
-  password       String?  
-  accounts       Account[]
-  sessions       Session[]
+  id            String     @id @default(uuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  sessions      Session[]
+  sharable      Sharable[]
 }
 
 model Account {
-  id                String      @id @default(uuid())
+  id                String  @id @default(uuid())
   userId            String
   type              String
   provider          String
@@ -37,13 +38,13 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String      @id @default(uuid())
+  id           String   @id @default(uuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -51,9 +52,21 @@ model Session {
 }
 
 model VerificationToken {
-  identifier  String
-  token       String   @unique
-  expires     DateTime
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Sharable {
+  id                String  @id @default(uuid())
+  userId            String  @unique
+  name              String?
+  email             String?
+  image             String?
+  createLinkObjects Json?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

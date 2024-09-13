@@ -159,7 +159,7 @@ const CreateAccountForm = () => {
                 <button type="submit" disabled={!isCredentialValid} className={`loginButton ${!isCredentialValid && 'disabled'}`}>
                     {
                         loading ? 
-                        <Spinner /> :
+                        <Spinner color={"white"} /> :
               "Create Account"
                     }
                 </button>

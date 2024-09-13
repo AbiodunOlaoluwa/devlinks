@@ -4,10 +4,31 @@ import DeviceLinksPreview from "@/app/components/DeviceLinksPreview";
 import { useLinkContext } from "../LinkContext";
 import Image from "next/image";
 import imageUploadBox from "@/app/images/uploadImageBox.svg";
+import { useState, useEffect } from "react";
+import { UserType } from "../page";
+import {useSession} from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
 
-  const { createLinkObjects, name, email, image, editName, editEmail, editImage } = useLinkContext();
+  const { createLinkObjects, name, email, image, editName, editEmail, editImage, saveProfile, setUserData } = useLinkContext();
+  const {status, data: session} = useSession();
+  const [user, setUser] = useState<UserType | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const router = useRouter();
+
+
+  useEffect(() => {
+    if (status === "loading") return;
+    if (status === "unauthenticated") {
+      router.push("/");
+    } else if (status === "authenticated") {
+      setUser(session.user as UserType);
+      setUserData(session.user as UserType);
+    }
+  }, [status, session, setUserData, router]);
+
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     editName(event.target.value);
@@ -15,6 +36,22 @@ const Profile = () => {
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     editEmail(event.target.value);
+  }
+
+  const handleSave = async () => {
+    setSaving(true);
+
+    try {
+      const response = await saveProfile();
+
+      if (response.success) {
+        setSaving(false);
+      } else {
+        setSaving(false);
+      }
+    } catch (error) {
+      setSaving(false);
+    }
   }
 
   return (
@@ -56,7 +93,7 @@ const Profile = () => {
         </div>
         <div className="profileSavePanel">
           <hr />
-          <button className="profileSaveButton">Save</button>
+          <button onClick={handleSave} className={`profileSaveButton ${saving ? 'disabled' : ''}`}>{saving ? "Saving" : "Save"}</button>
         </div>
       </div>
     </div>
