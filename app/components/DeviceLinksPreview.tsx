@@ -110,17 +110,28 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
           <div className="innerOutline">
             <div className="outlineContent">
               <div className="profileContent">
-                <svg className="profilePhotoAlternative" xmlns="http://www.w3.org/2000/svg" width="97" height="96" viewBox="0 0 97 96" fill="none">
-                  <circle cx="48.5" cy="48" r="48" fill="#EEEEEE" />
-                </svg>
+                {
+                  image === "" ?
+                <div className="profilePhotoSkeleton skeleton"></div>
+                : 
+                <div className="profilePhotoContainer">
+                  <Image 
+                  src={image} 
+                  alt="userProfilePhoto" 
+                  width={97}
+                  height={97}
+                  className="profilePhoto"
+                  />
+                </div>
+                }
                 <div className="nameAndDescription">
                   {name === "" ? 
-                  <div className="nameAlternative"></div>
+                  <div className="nameSkeleton skeleton"></div>
                   :
                   <div className="nameContainer">{name}</div>
                 }
                   {email === "" ? 
-                  <div className="descriptionAlternative"></div> 
+                  <div className="emailSkeleton skeleton"></div> 
                   :
                   <a href={`mailto:${email}`}>
                   <div className="emailContainer">{email}</div>
@@ -131,14 +142,12 @@ const DeviceLinksPreview = (props: React.PropsWithChildren<DevicePreviewProps>) 
               <div className="linksListBox">
                 {props.linkArray?.length === 0 ? (
                   <>
-                    <div className="linkBoxAlternative"></div>
-                    <div className="linkBoxAlternative"></div>
-                    <div className="linkBoxAlternative"></div>
-                    <div className="linkBoxAlternative"></div>
-                    <div className="linkBoxAlternative"></div>
+                  {[...Array(5)].map((_, index) => (
+                    <div key={index} className="linkSkeleton skeleton"></div>
+                  ))}
                   </>
                 ) : (
-                  props.linkArray?.map((link, index) => (
+                  linkArray?.map((link, index) => (
                     (link.platformOption && link.linkText) ? 
                     <a key={index} href={link.linkText} target="_blank" className={`linkBox`}>
                     <div className={`linkBoxAlternative ${getBgColorClass(link.platformOption)} whiteText`}>

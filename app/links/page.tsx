@@ -7,6 +7,7 @@ import "./links.css";
 import DeviceLinksPreview from "@/app/components/DeviceLinksPreview";
 import CreateLink from "@/app/components/CreateLink";
 import { useLinkContext } from "./LinkContext";
+import Spinner from "../components/Spinner";
 
 
 
@@ -32,6 +33,7 @@ const LinksPage = () => {
   const [user, setUser] = useState<UserType | null>(null);
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -42,6 +44,7 @@ const LinksPage = () => {
     } else if (status === "authenticated") {
       setUser(session.user as UserType);
       setUserData(session.user as UserType);
+      setTimeout(() => setLoading(false), 600);
     }
   }, [status, session, setUserData, router]);
 
@@ -68,17 +71,12 @@ const LinksPage = () => {
       const response = await saveLinks(); // Await the saveLinks function to finish
 
       if (response.success) {
-        // Handle success (if saveLinks returns a success property)
-        setSaving(false); // Stop the saving state
-        // You can provide additional feedback here, e.g., show a success message
+        setSaving(false); 
       } else {
-        // Handle the error case if there is an error in response
         setSaving(false);
-        // setError("Failed to save links. Please try again.");
       }
     } catch (error) {
       setSaving(false);
-      // setError("An unexpected error occurred. Please try again.");
     }
   };
 
@@ -92,7 +90,8 @@ const LinksPage = () => {
         </div>
         <button className="addLinkButton" onClick={createNewLink}><p className="addLinkButtonText">+ Add new link</p></button>
         <div className="editPanelBody">
-          {createLinkObjects?.length === 0 ? <div className="addLinkBody">
+          {loading === true ? <div className="addLinkBody"><Spinner color="black" /></div> :
+          createLinkObjects?.length === 0 ? <div className="addLinkBody">
             <div className="addLinkBodyContent">
               <svg className="addLinkBodyContentImage" xmlns="http://www.w3.org/2000/svg" width="250" height="161" viewBox="0 0 250 161" fill="none">
                 <path opacity="0.3" d="M48.6936 15.4213C23.3786 25.2238 4.59362 50.0679 0.857884 80.1285C-2.26282 105.459 5.19347 133.446 49.0884 141.419C134.494 156.939 222.534 158.754 242.952 116.894C263.369 75.0336 235.427 8.00293 192.079 3.36363C157.683 -0.326546 98.1465 -3.7206 48.6936 15.4213Z" fill="white" />

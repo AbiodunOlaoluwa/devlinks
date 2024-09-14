@@ -1,12 +1,21 @@
 "use client";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import "./NavBar.css"
 import LogoutButton from '@/app/components/LogoutButton';
 
 const NavBar = () => {
 
     const [buttonStyle, setButtonStyle] = useState("");
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const pathName = pathname.slice(1);
+        if (pathName === "links") setButtonStyle("links")
+            else if (pathName === "links/profile") setButtonStyle("profile");
+        else if (pathName === "preview") setButtonStyle("preview");
+    }, [])
 
     return (
         <div className="navbarContainer">

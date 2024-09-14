@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/db";
 import { LinkObject } from "@/app/links/LinkContext";
 
-// Named export for the GET method
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const requestEmail = searchParams.get("email");
