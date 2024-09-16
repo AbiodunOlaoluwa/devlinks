@@ -255,11 +255,15 @@ line-height: 150%; /* 1.5rem */
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
   .editPanel {
     height: 100dvh;
     width: 100%;
     padding: 1.5rem;
+  }
+
+  .editPanelBody {
+    height: fit-content;
   }
 
   .linkHeading {
@@ -268,6 +272,41 @@ line-height: 150%; /* 1.5rem */
 
   .headingP {
     font-size: 16px;
+  }
+
+  .profileSubArea {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .profilePhotoText {
+    text-wrap: nowrap;
+  }
+
+  .uploadImageBoxContainer {
+    width: 100%;
+    height: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .profileTextSubArea {
+    height: fit-content;
+    padding: 2rem 1rem;
+  }
+
+  .profileText {
+    font-size: 12px;
+  }
+
+  .profileTextContainer {
+    flex-direction: column;
+  }
+
+  .textInputContainer {
+    width: 100%;
   }
 
   .profileSaveButton {

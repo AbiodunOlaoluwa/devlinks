@@ -63,7 +63,7 @@ const CreateAccountForm = () => {
         try {
             const res = await axios.post("/api/auth/register", {email, password});
 
-            if (res.status === 200) {
+            if (res.status === 201) {
                 router.push("/");
                 setLoading(false);
             }

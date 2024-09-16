@@ -246,7 +246,7 @@
     }
   }
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     .editPanel {
       height: 100dvh;
       width: 100%;
