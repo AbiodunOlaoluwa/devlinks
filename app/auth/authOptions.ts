@@ -37,12 +37,10 @@ const authOptions: NextAuthOptions = {
             if (isValidPassword) {
               return user;
             } else {
-                console.error("Invalid Credentials");
-                return null;
+                throw new Error ("Invalid Credentials");
             };
           } else {
-            console.error("User not found");
-            return null;
+            throw new Error ("User not found");
           }
         },
     }),

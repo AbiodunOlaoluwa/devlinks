@@ -57,6 +57,7 @@ const CreateAccountForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setErrorText("Try Again")
         const email = credentials.email;
         const password = credentials.password;
 

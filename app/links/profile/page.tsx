@@ -127,7 +127,7 @@ const Profile = () => {
             </div>
             <div className="profileTextSubArea">
               <div className="profileTextContainer">
-                <p className="profileText">First Name*</p>
+                <p className="profileText">Name*</p>
                 <div className="textInputContainer">
                   <input required type="text" className="textInput" name="name" placeholder="e.g. John Appleseed" value={name} onChange={handleNameChange} />
                 </div>

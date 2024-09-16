@@ -56,8 +56,7 @@ const LoginInputForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const email = credentials.email;
-    const password = credentials.password;
+    const {email, password} = credentials;
     try {
       const res = await signIn("credentials", {
         email,
@@ -65,15 +64,16 @@ const LoginInputForm = () => {
         redirect: false,
       });
 
-      console.log(res);
-      if (!res?.error) {
-        router.push("/links");
-        router.refresh();
+      if (res?.error) {
+        setError(true);
+        setErrorText(res.error);
         setLoading(false);
+      } else {
+        router.push("/links")
       }
     } catch (error) {
       setLoading(false);
-      setError(true)
+      setError(true);
     }
   }
 
