@@ -1,8 +1,12 @@
-import React from 'react'
+"use client";
+import { LinkProvider } from "../links/LinkContext";
+import PreviewContent from "./PreviewContent";
 
 const Preview = () => {
   return (
-    <div>Preview</div>
+    <LinkProvider>
+      <PreviewContent />
+    </LinkProvider>
   )
 }
 

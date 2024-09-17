@@ -1,0 +1,82 @@
+.mainPreviewContainer {
+    padding: 1rem;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: #fafafa;
+}
+
+.navBarContainer {
+    padding: 1.2rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.backToEditor {
+    border: 1px solid #633cff;
+    border-radius: 8px;
+    color: #633cff;
+    padding: 0.7rem 1.5rem;
+    font-weight: 500;
+}
+
+.backToEditor:hover {
+    background-color: #efebff;
+    cursor: pointer;
+}
+
+.shareLinkTextContainer {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    border-radius: 8px;
+    width: 30%;
+    background-color: whitesmoke;
+}
+
+.shareLinkTextContainer:focus-within {
+    border: 1px solid #633cff;
+    box-shadow: 0px 0px 32px rgba(99, 60, 255, 0.25);
+    border-radius: 8px;
+}
+
+.shareLinkTextInput {
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    font-weight: 600;
+    color: #737373;
+}
+
+.shareButton {
+    outline: none;
+    color: white;
+    font-weight: 500;
+    background-color: #633cff;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+}
+
+.shareButton:hover {
+    background-color: #4f30c8;
+}
+
+.shareButton:active {
+    background-color: #392394;
+}
+
+@media only screen and (max-width: 500px) {
+    .shareLinkTextContainer {
+        display: none;
+    }
+
+    .backToEditor {
+        width: 160px;
+    }
+
+    .shareButton {
+        width: 160px;
+    }
+}

@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import NavBar from "./NavBar";
 import "./layout.css";
 import { LinkProvider } from "./LinkContext";
