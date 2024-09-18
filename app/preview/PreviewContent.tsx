@@ -10,6 +10,7 @@ import { UserType } from "../links/page";
 import Link from "next/link";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
+import Clipboard from "clipboard";
 import rightArrow from "@/app/images/icon-arrow-right.svg";
 import github from "@/app/images/icon-github.svg";
 import frontendMentor from "@/app/images/icon-frontend-mentor.svg";
@@ -175,7 +176,17 @@ const PreviewContent = () => {
 
       if (success) {
         toast.success("Your Link has been updated Succesfully.");
-        navigator.clipboard.writeText(link);
+        const clipboard = new Clipboard(".shareButton", {
+          text: () => link,
+        });
+        clipboard.on("success", () => {
+          toast.success("Your link has been copied to the clipboard!");
+          clipboard.destroy();
+        });
+        clipboard.on("error", () => {
+          toast.error("Failed to copy the link.");
+          clipboard.destroy();
+        })
         setShareLinkLoading(false);
         setLinkCopy(true);
         setTimeout(() => setLinkCopy(false), 1500);
@@ -187,6 +198,7 @@ const PreviewContent = () => {
 
   return (
     <div className="mainPreviewContainer">
+      <Toaster />
       <div className="navBarContainer">
         {loading ? <Spinner color="black" /> : <Link className="backToEditor" href={"/links"} onClick={() => setLoading(true)}>Back to Editor</Link>}
         <div className="shareLinkTextContainer">
