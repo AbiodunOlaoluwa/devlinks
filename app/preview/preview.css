@@ -1,11 +1,20 @@
+*::-webkit-scrollbar {
+    width: 0;
+}
+
 .mainPreviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 1rem;
     height: 100dvh;
     width: 100dvw;
     background-color: #fafafa;
+    gap: 2rem;
 }
 
 .navBarContainer {
+    width: 100%;
     padding: 1.2rem 1.75rem;
     display: flex;
     justify-content: space-between;
@@ -48,6 +57,12 @@
     background-color: transparent;
     font-weight: 600;
     color: #737373;
+    caret-color: #633cff;
+}
+
+.shareLinkTextInput::selection {
+    background-color: #633cff;
+    color: white;
 }
 
 .shareButton {
@@ -57,6 +72,7 @@
     background-color: #633cff;
     border-radius: 8px;
     padding: 0.7rem 1.5rem;
+    width: 126px;
 }
 
 .shareButton:hover {
@@ -67,6 +83,15 @@
     background-color: #392394;
 }
 
+.previewBox {
+    min-width: 240px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 500px) {
     .shareLinkTextContainer {
         display: none;
@@ -74,9 +99,12 @@
 
     .backToEditor {
         width: 160px;
+        text-wrap: nowrap;
+        flex-shrink: 1;
     }
 
     .shareButton {
         width: 160px;
+        flex-shrink: 1;
     }
 }

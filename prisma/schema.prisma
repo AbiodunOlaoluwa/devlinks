@@ -60,7 +60,7 @@ model VerificationToken {
 }
 
 model Sharable {
-  id                String  @id @default(uuid())
+  id                String  @id @default(cuid())
   userId            String  @unique
   name              String?
   email             String?

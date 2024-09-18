@@ -14,6 +14,7 @@ interface LinkContextType {
   name: string;
   email: string;
   image: string;
+  userId: string;
   setUserData: (user: UserType) => void;
   editName: (name: string) => void;
   editEmail: (email: string) => void;
@@ -157,7 +158,7 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <LinkContext.Provider value={{ createLinkObjects, name, email, image, setUserData, addLink, removeLink, editLink, moveLink, editName, editEmail, editImage, saveLinks, saveProfile }}>
+    <LinkContext.Provider value={{ createLinkObjects, name, email, image, userId, setUserData, addLink, removeLink, editLink, moveLink, editName, editEmail, editImage, saveLinks, saveProfile }}>
       {children}
     </LinkContext.Provider>
   );
