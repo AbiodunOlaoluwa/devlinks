@@ -37,7 +37,7 @@ const PreviewContent = () => {
   const [loading, setLoading] = useState(true);
   const [shareLinkLoading, setShareLinkLoading] = useState(false);
   const [link, setLink] = useState("");
-  const [linkId, setLinkId] = useState("");
+  const [oldLink, setOldLink] = useState("");
   const [linkCopy, setLinkCopy] = useState(false);
 
 
@@ -51,11 +51,18 @@ const PreviewContent = () => {
       setLoading(false);
       setUserData(session.user as UserType);
       setTimeout(() => setLoading(false), 600);
-      if (process.env.NODE_ENV === "development") setLink(`http://localhost:3000/${userId}`);
-      else if (process.env.NODE_ENV === "production") setLink(`https://aosdevlinks.vercel.app/${userId}`);
+      if (process.env.NODE_ENV === "development") {
+        setLink(`http://localhost:3000/${userId}`);
+        setOldLink(`http://localhost:3000/${userId}`);
+      }
+      else if (process.env.NODE_ENV === "production") {
+        setLink(`https://aosdevlinks.vercel.app/${userId}`);
+        setOldLink(`https://aosdevlinks.vercel.app/${userId}`);
+      }
     }
 
-  }, [userId, status, session, setUserData, router])
+  }, [userId, status, session, setUserData, router]);
+
 
   const getImageSource = (platformOption: string) => {
     switch (platformOption) {
@@ -161,6 +168,23 @@ const PreviewContent = () => {
   }
 
   const handleShareClick = async () => {
+    if (link === oldLink) {
+      const clipboard = new Clipboard(".shareButton", {
+        text: () => link,
+      });
+      clipboard.on("success", () => {
+        toast.success("Your link has been copied to the clipboard!");
+        clipboard.destroy();
+      });
+      clipboard.on("error", () => {
+        toast.error("Failed to copy the link.");
+        clipboard.destroy();
+      })
+      await navigator.clipboard.writeText(link);
+      setShareLinkLoading(false);
+      setLinkCopy(true);
+      setTimeout(() => setLinkCopy(false), 1500);
+    }
     setShareLinkLoading(true);
 
       const url = new URL(link);
@@ -187,6 +211,7 @@ const PreviewContent = () => {
           toast.error("Failed to copy the link.");
           clipboard.destroy();
         })
+        await navigator.clipboard.writeText(link);
         setShareLinkLoading(false);
         setLinkCopy(true);
         setTimeout(() => setLinkCopy(false), 1500);
