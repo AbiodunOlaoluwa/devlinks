@@ -51,7 +51,7 @@ const PreviewContent = () => {
       setUserData(session.user as UserType);
       setTimeout(() => setLoading(false), 600);
       if (process.env.NODE_ENV === "development") setLink(`http://localhost:3000/${userId}`);
-      else if (process.env.NODE_ENV === "production") setLink("");
+      else if (process.env.NODE_ENV === "production") setLink(`https://aosdevlinks.vercel.app/${userId}`);
     }
 
   }, [userId, status, session, setUserData, router])
