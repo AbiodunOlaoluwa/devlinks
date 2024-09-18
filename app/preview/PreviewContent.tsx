@@ -167,14 +167,13 @@ const PreviewContent = () => {
   }
 
   const handleShareClick = async () => {
+    setShareLinkLoading(true);
     if (link === oldLink) {
       await navigator.clipboard.writeText(link);
       setShareLinkLoading(false);
       setLinkCopy(true);
       setTimeout(() => setLinkCopy(false), 1500);
-    }
-    setShareLinkLoading(true);
-
+    } else {
       const url = new URL(link);
       const newLinkId = url.pathname.replace("/", "");
       console.log(newLinkId)
@@ -196,6 +195,7 @@ const PreviewContent = () => {
         setShareLinkLoading(false);
         toast.error("Failed to update your link. Please try a different one.")
       }
+    }
   }
 
   return (
