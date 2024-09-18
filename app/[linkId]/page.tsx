@@ -39,13 +39,13 @@ export async function generateMetadata({ params }: LinkPageProps) {
 
     if (!sharableData) {
         return {
-            title: 'Not Found - devlinks',
+            title: 'Not Found | devlinks',
             description: 'The requested page was not found.',
         };
     }
 
     return {
-        title: `${sharableData.name} - devlinks`,
+        title: `${sharableData.name} | devlinks`,
         description: 'Custom devlinks page',
     };
 }

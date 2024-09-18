@@ -9,6 +9,7 @@ import "@/app/components/deviceLinksPreview.css";
 import { UserType } from "../links/page";
 import Link from "next/link";
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 import rightArrow from "@/app/images/icon-arrow-right.svg";
 import github from "@/app/images/icon-github.svg";
 import frontendMentor from "@/app/images/icon-frontend-mentor.svg";
@@ -33,6 +34,7 @@ const PreviewContent = () => {
   const { status, data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [shareLinkLoading, setShareLinkLoading] = useState(false);
   const [link, setLink] = useState("");
   const [linkId, setLinkId] = useState("");
   const [linkCopy, setLinkCopy] = useState(false);
@@ -52,15 +54,7 @@ const PreviewContent = () => {
       else if (process.env.NODE_ENV === "production") setLink("");
     }
 
-  }, [status, session, setUserData, router])
-
-
-  // useEffect (() => {
-  //     const url = new URL(link);
-  //     const customlink = url.pathname.replace("/", "");
-  //     setLinkId(customlink);
-  // }, [link])
-
+  }, [userId, status, session, setUserData, router])
 
   const getImageSource = (platformOption: string) => {
     switch (platformOption) {
@@ -141,10 +135,54 @@ const PreviewContent = () => {
     setLink(event.target.value);
   };
 
-  const handleShareClick = (): void => {
-    navigator.clipboard.writeText(link);
-    setLinkCopy(true);
-    setTimeout(() => setLinkCopy(false), 1500);
+  const updateLinkId = async (newLinkId: string) => {
+    try {
+      const response = await fetch("/api/updateSharableLink", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ sharableId: userId, newLinkId }),
+      });
+
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error || "Failed to update your link");
+      }
+
+      const result = await response.json();
+
+      return result.success;
+    } catch (error: any) {
+      toast.error(error.message || "An error has occured while updating the link.");
+      return false;
+    }
+  }
+
+  const handleShareClick = async () => {
+    setShareLinkLoading(true);
+
+      const url = new URL(link);
+      const newLinkId = url.pathname.replace("/", "");
+      console.log(newLinkId)
+
+      if (!newLinkId) {
+        toast.error("Invalid Link.");
+        return;
+      }
+
+      const success = await updateLinkId(newLinkId);
+
+      if (success) {
+        toast.success("Your Link has been updated Succesfully.");
+        navigator.clipboard.writeText(link);
+        setShareLinkLoading(false);
+        setLinkCopy(true);
+        setTimeout(() => setLinkCopy(false), 1500);
+      } else {
+        setShareLinkLoading(false);
+        toast.error("Failed to update your link. Please try a different one.")
+      }
   }
 
   return (
@@ -154,7 +192,7 @@ const PreviewContent = () => {
         <div className="shareLinkTextContainer">
           <input autoFocus autoComplete="off" onChange={handleLinkInputChange} type="text" name="link" id="link" className="shareLinkTextInput" value={link} />
         </div>
-        <button className="shareButton" onClick={handleShareClick}>{linkCopy ? "Copied!" : "Share Link"}</button>
+        <button className="shareButton" onClick={handleShareClick}>{shareLinkLoading ? <Spinner color="white" /> : linkCopy ? "Copied!" : "Share Link"}</button>
       </div>
       <div className="previewBox">
         <div className="outlineContent">

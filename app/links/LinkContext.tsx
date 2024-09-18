@@ -107,18 +107,14 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
       const { success, message } = data;
       return { success, message };
     } catch (error) {
-      console.error("Error saving profile:", error);
+      console.error("Error saving profile:", error);3
       return { success: false, message: "Error saving profile" };
     }
   };
   
-
   const setUserData = (user: UserType) => {
     setUser(user);
   };
-
-  //on mount, we're going to use effect hook to pull the user links data and be updating it when they click "save" with a 
-  //function to patch the links data of the user in the database...
 
   const addLink = (platform: string, link: string) => {
     setCreateLinkObjects((prevLinks) => [...prevLinks, { platformOption: platform, linkText: link }]);

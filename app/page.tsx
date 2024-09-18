@@ -8,9 +8,11 @@ import "./authPages.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login - devlinks",
+  title: "Login | devlinks",
   description: "devlinks login page"
 }
+
+// export const fetchCache = "force-no-store";
 
 export default async function Home() {
 

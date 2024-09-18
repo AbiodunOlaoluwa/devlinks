@@ -8,7 +8,7 @@ import "../authPages.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create Account - devlinks",
+  title: "Create Account | devlinks",
   description: "create a devlinks account"
 }
 
