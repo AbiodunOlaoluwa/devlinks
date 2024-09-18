@@ -163,9 +163,9 @@ const CreateLink: React.FC<CreateLinkProps> = ({
     };
 
     return (
-        <div ref={combinedRef} className={`createLinkContainer ${isDragging ? "dragging" : ""}`}>
+        <div className={`createLinkContainer ${isDragging ? "dragging" : ""}`}>
             <div className="container">
-                <div className="createLinkHeader">
+                <div ref={combinedRef} className="createLinkHeader">
                     <div className="createLinkDnDSN">
                         <Image src={draganddropIcon} alt='draganddrop' />
                         <p><span>Link #
