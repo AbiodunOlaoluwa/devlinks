@@ -10,7 +10,6 @@ import { UserType } from "../links/page";
 import Link from "next/link";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
-import Clipboard from "clipboard";
 import rightArrow from "@/app/images/icon-arrow-right.svg";
 import github from "@/app/images/icon-github.svg";
 import frontendMentor from "@/app/images/icon-frontend-mentor.svg";
@@ -169,17 +168,6 @@ const PreviewContent = () => {
 
   const handleShareClick = async () => {
     if (link === oldLink) {
-      const clipboard = new Clipboard(".shareButton", {
-        text: () => link,
-      });
-      clipboard.on("success", () => {
-        toast.success("Your link has been copied to the clipboard!");
-        clipboard.destroy();
-      });
-      clipboard.on("error", () => {
-        toast.error("Failed to copy the link.");
-        clipboard.destroy();
-      })
       await navigator.clipboard.writeText(link);
       setShareLinkLoading(false);
       setLinkCopy(true);
@@ -200,17 +188,6 @@ const PreviewContent = () => {
 
       if (success) {
         toast.success("Your Link has been updated Succesfully.");
-        const clipboard = new Clipboard(".shareButton", {
-          text: () => link,
-        });
-        clipboard.on("success", () => {
-          toast.success("Your link has been copied to the clipboard!");
-          clipboard.destroy();
-        });
-        clipboard.on("error", () => {
-          toast.error("Failed to copy the link.");
-          clipboard.destroy();
-        })
         await navigator.clipboard.writeText(link);
         setShareLinkLoading(false);
         setLinkCopy(true);

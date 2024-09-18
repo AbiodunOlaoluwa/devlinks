@@ -14,7 +14,6 @@
     "@types/bcryptjs": "^2.4.6",
     "axios": "^1.7.6",
     "bcryptjs": "^2.4.3",
-    "clipboard": "^2.0.11",
     "next": "^14.2.12",
     "next-cloudinary": "^6.13.0",
     "react": "^18.3.1",
