@@ -95,6 +95,7 @@
     line-height: 100%;
     display: flex;
     justify-content: center;
+    text-decoration: underline;
   }
   
   .linksListBox {
