@@ -82,6 +82,7 @@ export const LinkProvider = ({ children }: { children: ReactNode }) => {
   
       const data = await response.json();
       const { success, message } = data;
+      saveProfile();
       return { success, message };
     } catch (error) {
       console.error("Error saving links:", error);
