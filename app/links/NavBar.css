@@ -42,6 +42,10 @@
     flex-shrink: 1;
     gap: 0.5rem;
   }
+
+  .navbarLogoLinkText {
+    display: none;
+  }
   
   .linksButton {
     cursor: pointer;
@@ -101,7 +105,20 @@
       display: none;
     }
 
-    .previewEye {
+    .linksButton, .activeButton {
+      padding: 0.5rem 1rem;
+      /* background: none; */
+    }
+
+    .linkButtonLogo, .profileButtonLogo, .previewEye {
+      display: none;
+    }
+
+    .previewText {
+      display: flex;
+    }
+
+    .navBarLogoLinkText {
       display: flex;
     }
   }
